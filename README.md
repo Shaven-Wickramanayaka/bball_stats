@@ -1,5 +1,5 @@
 # NBA Game Display CLI
-- Displays the NBA games scheduled for today nad displays the accociated scores.
+- Displays the NBA games scheduled for today and displays the associated scores.
 - Made using Rust and BallDontLie API.
 ## Cloning
 ### Prerequsites - Rust
