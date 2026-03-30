@@ -3,6 +3,7 @@ use reqwest::header::AUTHORIZATION;
 use chrono::{DateTime,Utc};    
 use std::time::SystemTime;
 use std::collections::HashMap;
+use std::io::{stdin,stdout,Write};
 
 #[derive(Deserialize)]
 struct AllData{
@@ -41,4 +42,8 @@ fn main() {
             println!("{}:{} | {}:{}",game.home_team.abbreviation, game.home_team_score, game.visitor_team.abbreviation, game.visitor_team_score);
             println!("\n");
     }
+    let mut s=String::new();
+    print!("Press a key to exit");
+    let _=stdout().flush();
+    let _ = stdin().read_line(&mut s);
 }
