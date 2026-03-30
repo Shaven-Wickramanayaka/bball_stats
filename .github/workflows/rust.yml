@@ -9,7 +9,7 @@ jobs:
     name: Windows Build
     runs-on: windows-latest
     env:
-      BINARY_NAME: gui_basketball
+      BINARY_NAME: bball_stats
       TARGET: x86_64-pc-windows-msvc
     steps:
       - name: Checkout
