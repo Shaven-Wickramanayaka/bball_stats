@@ -43,7 +43,7 @@ fn main() {
             println!("\n");
     }
     let mut s=String::new();
-    print!("Press a key to exit");
+    print!("Press enter to exit");
     let _=stdout().flush();
     let _ = stdin().read_line(&mut s);
 }
