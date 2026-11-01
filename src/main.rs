@@ -1,6 +1,6 @@
 use serde::Deserialize;
 use reqwest::header::AUTHORIZATION;
-use chrono::{DateTime,Utc};    
+use chrono::{DateTime,Utc};
 use std::time::SystemTime;
 use std::collections::HashMap;
 use std::io::{stdin,stdout,Write};
@@ -15,6 +15,7 @@ struct Stats{
     visitor_team: VisitorTeam,
     home_team_score: u64,
     visitor_team_score:u64,
+    status_state: String,
 }
 #[derive(Deserialize)]
 struct HomeTeam{
@@ -30,15 +31,13 @@ fn main() {
     println!("NBA Games Today\n");
     let url = format!("https://api.balldontlie.io/nba/v1/games");
     let client = reqwest::blocking::Client::new();
-    let now = SystemTime::now();
-    let now:    DateTime<Utc> = now.into();
-    let now = now.to_rfc3339();
+    let now = Utc::now().format("%Y-%m-%d").to_string();
     let mut params = HashMap::new();
     params.insert("dates[]", now);
     let data: AllData = client.get(url).header(AUTHORIZATION, "65ab2ce7-ad41-43bf-a304-0f7ec82a392f").query(&params).send().expect("Error getting api").json().expect("Error parsing Json");
 
     for game in data.data{
-            println!("{}(Home Team) vs {}(Away Team)", game.home_team.full_name, game.visitor_team.full_name);
+            println!("{}(Home Team) vs {}(Away Team) | Status: {}", game.home_team.full_name, game.visitor_team.full_name, game.status_state);
             println!("{}:{} | {}:{}",game.home_team.abbreviation, game.home_team_score, game.visitor_team.abbreviation, game.visitor_team_score);
             println!("\n");
     }
