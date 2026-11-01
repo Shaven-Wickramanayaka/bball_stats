@@ -6,6 +6,7 @@ use std::collections::HashMap;
 use std::io::{stdin,stdout,Write};
 
 #[derive(Deserialize)]
+
 struct AllData{
     data: Vec<Stats>
 }
